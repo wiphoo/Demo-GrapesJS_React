@@ -1,1 +1,130 @@
 # Demo-GrapesJs-React
+
+A Next.js application demonstrating the integration of GrapesJS with React for visual website editing. This project showcases the powerful drag-and-drop website building capabilities of GrapesJS in a modern React/Next.js environment.
+
+![GrapesJS Demo](https://github.com/user-attachments/assets/ecf24f2f-332a-4c60-b6e3-291c184a5a4f)
+
+## Features
+
+- 🎨 **Visual Website Editor** - Drag-and-drop interface for building websites
+- 🧩 **Pre-built Blocks** - Ready-to-use components including:
+  - Hero sections
+  - Cards
+  - Text sections
+  - Footers
+  - And more from the GrapesJS preset webpage plugin
+- 🎯 **Live Editing** - Click on any element to edit text, styles, and properties
+- 💾 **Code Export** - Export HTML and CSS of your created pages
+- ⚡ **Built with Next.js** - Fast, modern React framework with Turbopack
+- 🎭 **TypeScript** - Fully typed for better development experience
+
+## Technologies Used
+
+- **Next.js 16** - React framework for production
+- **GrapesJS** - Open-source, multi-purpose Web Builder Framework
+- **@grapesjs/react** - Official React wrapper for GrapesJS
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS** - Utility-first CSS framework
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Toffoli-Co-Ltd/Demo-GrapesJs-React.git
+cd Demo-GrapesJs-React
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Run the development server:
+```bash
+npm run dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the editor.
+
+### Building for Production
+
+```bash
+npm run build
+npm start
+```
+
+## How to Use
+
+1. **Adding Blocks**: Drag blocks from the right sidebar onto the canvas
+2. **Editing Content**: Click on any element in the canvas to select and edit it
+3. **Styling**: Use the Styles panel on the right to customize appearance
+4. **Export Code**: Click the "Export Code" button to see the generated HTML and CSS in the browser console
+
+## Project Structure
+
+```
+Demo-GrapesJs-React/
+├── app/
+│   ├── components/
+│   │   └── GrapesJSEditor.tsx   # Main GrapesJS editor component
+│   ├── layout.tsx                # Root layout
+│   ├── page.tsx                  # Home page
+│   └── globals.css               # Global styles
+├── public/                       # Static assets
+├── package.json
+├── tsconfig.json
+└── next.config.ts
+```
+
+## Customization
+
+### Adding Custom Blocks
+
+Edit `app/components/GrapesJSEditor.tsx` and add blocks in the `onEditor` callback:
+
+```typescript
+blockManager.add('my-block', {
+  label: 'My Block',
+  content: '<div>My custom content</div>',
+  category: 'Custom',
+});
+```
+
+### Configuring GrapesJS Options
+
+Modify the `options` prop in the `GjsEditor` component:
+
+```typescript
+<GjsEditor
+  options={{
+    height: '100vh',
+    storageManager: false,
+    // Add more options here
+  }}
+/>
+```
+
+## Learn More
+
+- [GrapesJS Documentation](https://grapesjs.com/docs/)
+- [GrapesJS React Documentation](https://github.com/GrapesJS/react)
+- [Next.js Documentation](https://nextjs.org/docs)
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Support
+
+For issues and questions, please open an issue on the [GitHub repository](https://github.com/Toffoli-Co-Ltd/Demo-GrapesJs-React/issues).
