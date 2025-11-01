@@ -4,10 +4,15 @@ import GjsEditor, { AssetsProvider, Canvas, LayersProvider, PagesProvider, Selec
 import type { Editor } from 'grapesjs';
 import grapesjs from 'grapesjs';
 import gjsPresetWebpage from 'grapesjs-preset-webpage';
+import { useRef } from 'react';
 import 'grapesjs/dist/css/grapes.min.css';
 
 export default function GrapesJSEditor() {
+  const editorRef = useRef<Editor | null>(null);
+
   const onEditor = (editor: Editor) => {
+    editorRef.current = editor;
+    
     // Add initial content to the canvas
     editor.setComponents(`
       <section style="padding: 50px 20px; text-align: center; background-color: #f8f9fa;">
@@ -81,10 +86,17 @@ export default function GrapesJSEditor() {
     });
   };
 
+  const handleExportCode = () => {
+    if (editorRef.current) {
+      console.log('HTML:', editorRef.current.getHtml());
+      console.log('CSS:', editorRef.current.getCss());
+      alert('Code exported to browser console (press F12 to view)');
+    }
+  };
+
   return (
     <GjsEditor
       grapesjs={grapesjs}
-      grapesjsCss="https://unpkg.com/grapesjs/dist/css/grapes.min.css"
       options={{
         height: '100vh',
         storageManager: false,
@@ -103,13 +115,7 @@ export default function GrapesJSEditor() {
             <div className="flex gap-2">
               <button
                 className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
-                onClick={() => {
-                  const editor = (window as any).editor;
-                  if (editor) {
-                    console.log('HTML:', editor.getHtml());
-                    console.log('CSS:', editor.getCss());
-                  }
-                }}
+                onClick={handleExportCode}
               >
                 Export Code
               </button>
