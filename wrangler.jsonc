@@ -1,11 +1,29 @@
 {
+  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "demo-grapesjs-react",
-  "main": ".opennext/dist/index.mjs",
-  "compatibility_date": "2024-01-01",
-  "compatibility_flags": ["nodejs_compat"],
-  "build": {
-    "command": "npm run build"
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2024-12-30",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
   },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "demo-grapesjs-react"
+    }
+  ],
+  "r2_buckets": [
+    // Create a R2 binding with the binding name "NEXT_INC_CACHE_R2_BUCKET"
+    // {
+    //   "binding": "NEXT_INC_CACHE_R2_BUCKET",
+    //   "bucket_name": "<BUCKET_NAME>",
+    // }
+  ],
   "vars": {
     "NODE_ENV": "production"
   }

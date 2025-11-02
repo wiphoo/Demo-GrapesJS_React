@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 const nextConfig: NextConfig = {
   serverExternalPackages: ['@opennextjs/cloudflare'],
@@ -13,3 +14,6 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// Initialize OpenNext Cloudflare for development
+initOpenNextCloudflareForDev();
