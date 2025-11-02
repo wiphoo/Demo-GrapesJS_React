@@ -31,7 +31,7 @@ A Next.js application demonstrating the integration of GrapesJS with React for v
 ### Prerequisites
 
 - Node.js 18+ 
-- npm or yarn
+- pnpm, npm or yarn
 
 ### Installation
 
@@ -43,12 +43,12 @@ cd Demo-GrapesJs-React
 
 2. Install dependencies:
 ```bash
-npm install
+pnpm install
 ```
 
 3. Run the development server:
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the editor.
@@ -56,8 +56,8 @@ npm run dev
 ### Building for Production
 
 ```bash
-npm run build
-npm start
+pnpm run build
+pnpm run start
 ```
 
 ## Deployment to Cloudflare Workers
@@ -74,12 +74,12 @@ This project is configured to deploy to Cloudflare Workers using OpenNext.
 
 1. **Install Wrangler CLI** (if not using the included dev dependency):
 ```bash
-npm install -g wrangler
+pnpm add -g wrangler
 ```
 
 2. **Authenticate with Cloudflare**:
 ```bash
-npx wrangler auth login
+pnpm exec wrangler auth login
 ```
 
 3. **Configure your project** (optional):
@@ -93,47 +93,47 @@ npx wrangler auth login
 The project is configured for optimal local development with Cloudflare bindings:
 
 ```bash
-npm run dev  # Standard Next.js development server
-npm run preview  # Preview in Cloudflare Workers runtime
+pnpm run dev  # Standard Next.js development server
+pnpm run preview  # Preview in Cloudflare Workers runtime
 ```
 
 ### Deployment
 
-#### Option 1: Using npm scripts (recommended)
+#### Option 1: Using pnpm scripts (recommended)
 
 ```bash
 # Build and deploy in one command
-npm run deploy
+pnpm run deploy
 
 # Or build first, then deploy
-npm run opennext:build
-npm run cf:deploy
+pnpm run opennext:build
+pnpm run cf:deploy
 
 # Upload new version (for gradual deployments)
-npm run upload
+pnpm run upload
 
 # Generate TypeScript types for Cloudflare environment
-npm run cf-typegen
+pnpm run cf-typegen
 ```
 
 #### Option 2: Manual deployment
 
 ```bash
 # Build the OpenNext application
-npx opennextjs-cloudflare build
+pnpm exec opennextjs-cloudflare build
 
 # Deploy to Cloudflare Workers
-npx wrangler deploy
+pnpm exec wrangler deploy
 ```
 
 #### Option 3: Preview locally
 
 ```bash
 # Build and run locally with Wrangler dev server
-npm run preview
+pnpm run preview
 
 # Or run Wrangler dev server directly
-npm run cf:dev
+pnpm run cf:dev
 ```
 
 ### Custom Domain (Optional)
@@ -171,12 +171,12 @@ Add environment variables in `wrangler.jsonc`:
 Or use Wrangler secrets for sensitive data:
 
 ```bash
-npx wrangler secret put MY_SECRET
+pnpm exec wrangler secret put MY_SECRET
 ```
 
 ### Troubleshooting
 
-- **Build Issues**: Make sure all dependencies are installed with `npm install`
+- **Build Issues**: Make sure all dependencies are installed with `pnpm install`
 - **Deployment Errors**: Check your Cloudflare account permissions and API token
 - **Custom Domain**: Ensure your domain is properly configured in Cloudflare DNS
 
