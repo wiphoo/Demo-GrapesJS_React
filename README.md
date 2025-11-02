@@ -85,6 +85,17 @@ npx wrangler auth login
 3. **Configure your project** (optional):
    - Update `wrangler.jsonc` with your custom domain and settings
    - Add environment variables in `wrangler.jsonc` if needed
+   - The `.dev.vars` file is automatically created for local development
+   - Static asset caching is configured via `public/_headers`
+
+### Local Development
+
+The project is configured for optimal local development with Cloudflare bindings:
+
+```bash
+npm run dev  # Standard Next.js development server
+npm run preview  # Preview in Cloudflare Workers runtime
+```
 
 ### Deployment
 
@@ -97,6 +108,12 @@ npm run deploy
 # Or build first, then deploy
 npm run opennext:build
 npm run cf:deploy
+
+# Upload new version (for gradual deployments)
+npm run upload
+
+# Generate TypeScript types for Cloudflare environment
+npm run cf-typegen
 ```
 
 #### Option 2: Manual deployment
