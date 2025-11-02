@@ -30,8 +30,8 @@ A Next.js application demonstrating the integration of GrapesJS with React for v
 
 ### Prerequisites
 
-- Node.js 18+ 
-- pnpm, npm or yarn
+- Node.js 18+
+- pnpm (recommended), npm or yarn
 
 ### Installation
 
@@ -62,7 +62,7 @@ pnpm run start
 
 ## Deployment to Cloudflare Workers
 
-This project is configured to deploy to Cloudflare Workers using OpenNext.
+This project is configured to deploy to Cloudflare Workers using OpenNext. It uses Webpack instead of Turbopack for compatibility with the Cloudflare Workers runtime.
 
 ### Prerequisites
 
@@ -90,11 +90,11 @@ pnpm exec wrangler auth login
 
 ### Local Development
 
-The project is configured for optimal local development with Cloudflare bindings:
+The project is configured for optimal local development with Cloudflare bindings. All scripts use Webpack for consistency with production builds:
 
 ```bash
-pnpm run dev  # Standard Next.js development server
-pnpm run preview  # Preview in Cloudflare Workers runtime
+pnpm run dev  # Standard Next.js development server with Webpack
+pnpm run opennext:preview  # Preview in Cloudflare Workers runtime
 ```
 
 ### Deployment
@@ -103,14 +103,14 @@ pnpm run preview  # Preview in Cloudflare Workers runtime
 
 ```bash
 # Build and deploy in one command
-pnpm run deploy
+pnpm run opennext:deploy
 
 # Or build first, then deploy
 pnpm run opennext:build
-pnpm run cf:deploy
+pnpm exec wrangler deploy
 
 # Upload new version (for gradual deployments)
-pnpm run upload
+pnpm run opennext:upload
 
 # Generate TypeScript types for Cloudflare environment
 pnpm run cf-typegen
@@ -130,10 +130,10 @@ pnpm exec wrangler deploy
 
 ```bash
 # Build and run locally with Wrangler dev server
-pnpm run preview
+pnpm run opennext:preview
 
 # Or run Wrangler dev server directly
-pnpm run cf:dev
+pnpm exec wrangler dev
 ```
 
 ### Custom Domain (Optional)
