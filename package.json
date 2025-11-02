@@ -8,7 +8,7 @@
     "start": "next start",
     "opennext:build": "opennextjs-cloudflare build",
     "opennext:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy:preview-branch": "BR=${GITHUB_REF_NAME:-${CF_BRANCH:-$(git rev-parse --abbrev-ref HEAD 2>/dev/null)}}; ALIAS=$(printf \"%s\" \"${BR:-preview}\" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9-]+/-/g;s/^-+//;s/-+$//' | cut -c1-40); echo \"Preview alias: $ALIAS\"; pnpm opennext:build && npx opennextjs-cloudflare upload --preview-alias \"$ALIAS\"",
+    "opennext:preview:branch": "BR=${GITHUB_REF_NAME:-${CF_BRANCH:-$(git rev-parse --abbrev-ref HEAD 2>/dev/null)}}; ALIAS=$(printf \"%s\" \"${BR:-preview}\" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9-]+/-/g;s/^-+//;s/-+$//' | cut -c1-40); echo \"Preview alias: $ALIAS\"; pnpm opennext:build && npx opennextjs-cloudflare upload --preview-alias \"$ALIAS\"",
     "opennext:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "opennext:upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
     "cf-typegen": "pnpm exec wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
