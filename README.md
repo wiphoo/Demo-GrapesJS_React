@@ -60,6 +60,104 @@ npm run build
 npm start
 ```
 
+## Deployment to Cloudflare Workers
+
+This project is configured to deploy to Cloudflare Workers using OpenNext.
+
+### Prerequisites
+
+- Cloudflare account
+- Wrangler CLI installed globally (optional, included as dev dependency)
+- Cloudflare API token
+
+### Setup
+
+1. **Install Wrangler CLI** (if not using the included dev dependency):
+```bash
+npm install -g wrangler
+```
+
+2. **Authenticate with Cloudflare**:
+```bash
+npx wrangler auth login
+```
+
+3. **Configure your project** (optional):
+   - Update `wrangler.toml` with your custom domain and settings
+   - Add environment variables in `wrangler.toml` if needed
+
+### Deployment
+
+#### Option 1: Using npm scripts (recommended)
+
+```bash
+# Build and deploy in one command
+npm run deploy
+
+# Or build first, then deploy
+npm run opennext:build
+npm run cf:deploy
+```
+
+#### Option 2: Manual deployment
+
+```bash
+# Build the OpenNext application
+npx opennextjs-cloudflare build
+
+# Deploy to Cloudflare Workers
+npx wrangler deploy
+```
+
+#### Option 3: Preview locally
+
+```bash
+# Build and run locally with Wrangler dev server
+npm run preview
+
+# Or run Wrangler dev server directly
+npm run cf:dev
+```
+
+### Custom Domain (Optional)
+
+To deploy to a custom domain:
+
+1. Update `wrangler.toml`:
+```toml
+[[routes]]
+pattern = "your-domain.com/*"
+zone_name = "your-domain.com"
+```
+
+2. Make sure your domain is configured in Cloudflare
+
+### Environment Variables
+
+Add environment variables in `wrangler.toml`:
+
+```toml
+[vars]
+MY_VARIABLE = "my_value"
+```
+
+Or use Wrangler secrets for sensitive data:
+
+```bash
+npx wrangler secret put MY_SECRET
+```
+
+### Troubleshooting
+
+- **Build Issues**: Make sure all dependencies are installed with `npm install`
+- **Deployment Errors**: Check your Cloudflare account permissions and API token
+- **Custom Domain**: Ensure your domain is properly configured in Cloudflare DNS
+
+For more information, see:
+- [OpenNext Documentation](https://opennext.js.org/)
+- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
+- [Wrangler CLI Documentation](https://developers.cloudflare.com/workers/wrangler/)
+
 ## How to Use
 
 1. **Adding Blocks**: Drag blocks from the right sidebar onto the canvas

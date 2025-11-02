@@ -1,0 +1,27 @@
+name = "demo-grapesjs-react"
+main = ".opennext/dist/index.mjs"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[build]
+command = "npm run build"
+
+# Environment variables (add your own as needed)
+[vars]
+NODE_ENV = "production"
+
+# Optional: Configure custom domains
+# [[routes]]
+# pattern = "your-domain.com/*"
+# zone_name = "your-domain.com"
+
+# Optional: Configure KV namespaces if needed
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = "your_kv_namespace_id"
+
+# Optional: Configure D1 databases if needed
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "your_database_name"
+# database_id = "your_database_id"
