@@ -83,8 +83,8 @@ npx wrangler auth login
 ```
 
 3. **Configure your project** (optional):
-   - Update `wrangler.toml` with your custom domain and settings
-   - Add environment variables in `wrangler.toml` if needed
+   - Update `wrangler.jsonc` with your custom domain and settings
+   - Add environment variables in `wrangler.jsonc` if needed
 
 ### Deployment
 
@@ -123,22 +123,32 @@ npm run cf:dev
 
 To deploy to a custom domain:
 
-1. Update `wrangler.toml`:
-```toml
-[[routes]]
-pattern = "your-domain.com/*"
-zone_name = "your-domain.com"
+1. Update `wrangler.jsonc`:
+```jsonc
+{
+  // ... existing configuration ...
+  "routes": [
+    {
+      "pattern": "your-domain.com/*",
+      "zone_name": "your-domain.com"
+    }
+  ]
+}
 ```
 
 2. Make sure your domain is configured in Cloudflare
 
 ### Environment Variables
 
-Add environment variables in `wrangler.toml`:
+Add environment variables in `wrangler.jsonc`:
 
-```toml
-[vars]
-MY_VARIABLE = "my_value"
+```jsonc
+{
+  // ... existing configuration ...
+  "vars": {
+    "MY_VARIABLE": "my_value"
+  }
+}
 ```
 
 Or use Wrangler secrets for sensitive data:
