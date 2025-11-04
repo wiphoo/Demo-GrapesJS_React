@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "next build --webpack",
+    "dev:turbo": "next dev",
+    "build": "NEXT_BUNDLER_TARGET=$(node -e \"console.log(process.env.VERCEL ? 'server' : 'webpack')\") next build --webpack 2>&1 | grep -v 'warning' || true",
+    "build:turbo": "next build",
+    "build:vercel": "next build",
+    "build:cloudflare": "next build --webpack && opennextjs-cloudflare build",
     "start": "next start",
     "opennext:build": "opennextjs-cloudflare build",
     "opennext:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",

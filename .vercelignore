@@ -1,0 +1,9 @@
+# Cloudflare-specific files
+wrangler.jsonc
+wrangler.json
+.wrangler/
+*.wrangler.*
+
+# OpenNext Cloudflare specific
+open-next.config.ts
+cloudflare-env.d.ts
