@@ -3,9 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "next dev --webpack",
+    "dev:turbo": "next dev",
+    "build": "NEXT_BUNDLER_TARGET=$(node -e \"console.log(process.env.VERCEL ? 'server' : 'webpack')\") next build --webpack 2>&1 | grep -v 'warning' || true",
+    "build:turbo": "next build",
+    "build:vercel": "next build",
+    "build:cloudflare": "next build --webpack && opennextjs-cloudflare build",
+    "start": "next start",
+    "opennext:build": "opennextjs-cloudflare build",
+    "opennext:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "opennext:preview:branch": "BR=${GITHUB_REF_NAME:-${CF_BRANCH:-$(git rev-parse --abbrev-ref HEAD 2>/dev/null)}}; ALIAS=$(printf \"%s\" \"${BR:-preview}\" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9-]+/-/g;s/^-+//;s/-+$//' | cut -c1-40); echo \"Preview alias: $ALIAS\"; pnpm opennext:build && npx opennextjs-cloudflare upload --preview-alias \"$ALIAS\"",
+    "opennext:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "opennext:upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "pnpm exec wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "@grapesjs/react": "^2.0.0",
@@ -16,11 +26,13 @@
     "react-dom": "19.2.0"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.11.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.45.3"
   }
 }

@@ -30,8 +30,8 @@ A Next.js application demonstrating the integration of GrapesJS with React for v
 
 ### Prerequisites
 
-- Node.js 18+ 
-- npm or yarn
+- Node.js 18+
+- pnpm (recommended), npm or yarn
 
 ### Installation
 
@@ -43,12 +43,12 @@ cd Demo-GrapesJs-React
 
 2. Install dependencies:
 ```bash
-npm install
+pnpm install
 ```
 
 3. Run the development server:
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the editor.
@@ -56,9 +56,134 @@ npm run dev
 ### Building for Production
 
 ```bash
-npm run build
-npm start
+pnpm run build
+pnpm run start
 ```
+
+## Deployment to Cloudflare Workers
+
+This project is configured to deploy to Cloudflare Workers using OpenNext. It uses Webpack instead of Turbopack for compatibility with the Cloudflare Workers runtime.
+
+### Prerequisites
+
+- Cloudflare account
+- Wrangler CLI installed globally (optional, included as dev dependency)
+- Cloudflare API token
+
+### Setup
+
+1. **Install Wrangler CLI** (if not using the included dev dependency):
+```bash
+pnpm add -g wrangler
+```
+
+2. **Authenticate with Cloudflare**:
+```bash
+pnpm exec wrangler auth login
+```
+
+3. **Configure your project** (optional):
+   - Update `wrangler.jsonc` with your custom domain and settings
+   - Add environment variables in `wrangler.jsonc` if needed
+   - The `.dev.vars` file is automatically created for local development
+   - Static asset caching is configured via `public/_headers`
+
+### Local Development
+
+The project is configured for optimal local development with Cloudflare bindings. All scripts use Webpack for consistency with production builds:
+
+```bash
+pnpm run dev  # Standard Next.js development server with Webpack
+pnpm run opennext:preview  # Preview in Cloudflare Workers runtime
+```
+
+### Deployment
+
+#### Option 1: Using pnpm scripts (recommended)
+
+```bash
+# Build and deploy in one command
+pnpm run opennext:deploy
+
+# Or build first, then deploy
+pnpm run opennext:build
+pnpm exec wrangler deploy
+
+# Upload new version (for gradual deployments)
+pnpm run opennext:upload
+
+# Generate TypeScript types for Cloudflare environment
+pnpm run cf-typegen
+```
+
+#### Option 2: Manual deployment
+
+```bash
+# Build the OpenNext application
+pnpm exec opennextjs-cloudflare build
+
+# Deploy to Cloudflare Workers
+pnpm exec wrangler deploy
+```
+
+#### Option 3: Preview locally
+
+```bash
+# Build and run locally with Wrangler dev server
+pnpm run opennext:preview
+
+# Or run Wrangler dev server directly
+pnpm exec wrangler dev
+```
+
+### Custom Domain (Optional)
+
+To deploy to a custom domain:
+
+1. Update `wrangler.jsonc`:
+```jsonc
+{
+  // ... existing configuration ...
+  "routes": [
+    {
+      "pattern": "your-domain.com/*",
+      "zone_name": "your-domain.com"
+    }
+  ]
+}
+```
+
+2. Make sure your domain is configured in Cloudflare
+
+### Environment Variables
+
+Add environment variables in `wrangler.jsonc`:
+
+```jsonc
+{
+  // ... existing configuration ...
+  "vars": {
+    "MY_VARIABLE": "my_value"
+  }
+}
+```
+
+Or use Wrangler secrets for sensitive data:
+
+```bash
+pnpm exec wrangler secret put MY_SECRET
+```
+
+### Troubleshooting
+
+- **Build Issues**: Make sure all dependencies are installed with `pnpm install`
+- **Deployment Errors**: Check your Cloudflare account permissions and API token
+- **Custom Domain**: Ensure your domain is properly configured in Cloudflare DNS
+
+For more information, see:
+- [OpenNext Documentation](https://opennext.js.org/)
+- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
+- [Wrangler CLI Documentation](https://developers.cloudflare.com/workers/wrangler/)
 
 ## How to Use
 
