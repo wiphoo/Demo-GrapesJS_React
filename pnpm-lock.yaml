@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@grapesjs/react':
         specifier: ^2.0.0
-        version: 2.0.0(grapesjs@0.22.13)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 2.0.0(grapesjs@0.22.14)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       grapesjs:
-        specifier: ^0.22.13
-        version: 0.22.13
+        specifier: ^0.22.14
+        version: 0.22.14
       grapesjs-preset-webpage:
         specifier: ^1.0.3
         version: 1.0.3
@@ -1861,8 +1861,8 @@ packages:
   grapesjs-preset-webpage@1.0.3:
     resolution: {integrity: sha512-C0VOKLAdhv0j1f81c6F2uk3JpJvxgXl5DeHUtDa5qGf/HZzaCmQxsvd8Re3Oh5Cah4uUCqoi9uB5FYx3hLND2w==}
 
-  grapesjs@0.22.13:
-    resolution: {integrity: sha512-GsLqv9ckVF7cWgp6aqlmxmLUJSsGvni4FHsKm9nxa6rv3acUeTkdR93GbbYaTejn5nFFCn9mBwzGGmGh9X+xHA==}
+  grapesjs@0.22.14:
+    resolution: {integrity: sha512-UyHKGtB9YOQ4bmvhmwY3H7J6SO30qgIH4qRp1ucUlblS21btMxY90xwQuAVIi+EFGl0wi8v1NBEYvA52eIEfyg==}
 
   gzip-size@6.0.0:
     resolution: {integrity: sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==}
@@ -2251,7 +2251,6 @@ packages:
   rclone.js@0.6.6:
     resolution: {integrity: sha512-Dxh34cab/fNjFq5SSm0fYLNkGzG2cQSBy782UW9WwxJCEiVO4cGXkvaXcNlgv817dK8K8PuQ+NHUqSAMMhWujQ==}
     engines: {node: '>=12'}
-    cpu: [arm, arm64, mips, mipsel, x32, x64]
     os: [darwin, freebsd, linux, openbsd, sunos, win32]
     hasBin: true
 
@@ -3702,11 +3701,11 @@ snapshots:
   '@esbuild/win32-x64@0.25.4':
     optional: true
 
-  '@grapesjs/react@2.0.0(grapesjs@0.22.13)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+  '@grapesjs/react@2.0.0(grapesjs@0.22.14)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@types/react': 19.2.2
       '@types/react-dom': 19.2.2(@types/react@19.2.2)
-      grapesjs: 0.22.13
+      grapesjs: 0.22.14
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
 
@@ -5123,7 +5122,7 @@ snapshots:
 
   grapesjs-preset-webpage@1.0.3: {}
 
-  grapesjs@0.22.13:
+  grapesjs@0.22.14:
     dependencies:
       '@types/backbone': 1.4.15
       backbone: 1.4.1
